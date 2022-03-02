@@ -35,21 +35,19 @@ const genPassword = (password) => {
 const issueJWT = (user) => {
   const _id = user._id;
 
-  const expiresIn = '30m';
-
   const payload = {
     sub: _id,
     iat: Date.now(),
   };
 
   const signedToken = jsonwebtoken.sign(payload, PRIV_KEY, {
-    expiresIn: expiresIn,
+    expiresIn: '15d',
     algorithm: 'RS256',
   });
 
   return {
     token: signedToken,
-    expires: expiresIn,
+    expires: '15d',
   };
 };
 
